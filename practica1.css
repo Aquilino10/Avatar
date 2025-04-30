@@ -1,0 +1,121 @@
+/* === Fondo Avatar === */
+body {
+  /* Fondo: Appa volando sobre las nubes */
+  background: url('mi-fondo.jpg') no-repeat center center fixed;
+  background-size: cover;
+
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+
+  /* Centrado flex de todo el .container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Overlay semitransparente para que resalte el contenido */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+/* === Contenedor principal === */
+.container {
+  position: relative; /* para que el overlay no afecte el contenido */
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* === Título grande === */
+h1 {
+  font-size: 60px;
+  color: #fff;
+  margin: 0;
+  text-align: center;
+}
+
+/* === Imagen sticker === */
+img {
+  width: 500px;
+  display: block;
+  margin: 20px auto;
+  filter: drop-shadow(0 0 15px rgba(0,0,0,0.4));
+  border-radius: 20px;
+  background-color: transparent;
+}
+
+/* === Botonera === */
+.boton {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* === Estilos comunes de botón === */
+button {
+  width: 100px;
+  height: 100px;
+  border: none;
+  border-radius: 50%;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* === Botón YES === */
+button.yes {
+  background: linear-gradient(45deg, #4caf50, #81c784);
+  color: white;
+  font-size: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+button.yes:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* === Botón NO === */
+button.no {
+  background: linear-gradient(45deg, #f41212, #e61809);
+  color: white;
+  font-size: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+button.no:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* === Frase final === */
+.nueva-frase {
+  font-size: 24px;
+  color: #ffc0cb;
+  background-color: #6c63ff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  margin: 20px auto;
+  display: inline-block;
+  z-index: 1;
+}
+@keyframes flotarAzula {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

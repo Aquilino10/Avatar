@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Página de Aquilino</title>
+  <style>
+    /* === Fondo Avatar === */
+    body {
+      /* Fondo: Appa volando sobre las nubes (Avatar: La Leyenda de Aang) */
+      background: url('mi-fondo.jpg') no-repeat center center fixed;
+      background-size: cover;
+
+      /* Overlay semitransparente para contraste */
+      position: relative;
+      overflow: hidden;
+      margin: 0;
+      font-family: Arial, sans-serif;
+
+      /* Centrado con flex */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+    }
+
+    /* === Estrellas titilando === */
+    .estrella {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: titilar 2s infinite ease-in-out;
+      z-index: 1;
+    }
+    @keyframes titilar {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0.2; }
+    }
+
+    /* === Luna emoji === */
+    .luna {
+  position: absolute;
+  top: 10%;
+  left: 65%;
+  width: 300px;
+  height: auto;
+  z-index: 0;
+  filter: drop-shadow(0 0 15px #00bfff);
+  animation: flotarAzula 4s ease-in-out infinite;
+}
+
+
+    
+
+    /* === Título === */
+    h1 {
+      font-size: 36px;
+      color: #fff;
+      margin-bottom: 20px;
+      z-index: 2;
+    }
+
+    /* === Sticker (tu imagen) === */
+    img {
+      width: 200px;
+      height: auto;
+      margin-bottom: 20px;
+      z-index: 2;
+      filter: drop-shadow(0 0 10px rgba(0,0,0,0.3));
+    }
+
+    /* === Botones Sí / No === */
+    .yes, .no {
+      position: absolute;
+      z-index: 2;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.2s;
+      color: white;
+    }
+    .yes {
+      left: 40%;
+      top: 65%;
+      background: linear-gradient(45deg, #4caf50, #81c784);
+    }
+    .yes:hover { transform: scale(1.1); }
+
+    .no {
+      left: 55%;
+      top: 65%;
+      background: linear-gradient(45deg, #f41212, #e61809);
+    }
+    .no:hover { transform: scale(1.1); }
+
+    /* === Frase final y corazones === */
+    .nueva-frase {
+      font-size: 24px;
+      color: #ffc0cb;
+      margin-top: 20px;
+      z-index: 2;
+    }
+    .corazon {
+      position: absolute;
+      font-size: 24px;
+      color: pink;
+      animation: flotar 2s linear forwards;
+      z-index: 2;
+    }
+    @keyframes flotar {
+      0%   { transform: translateY(0);    opacity: 1; }
+      100% { transform: translateY(-200px); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Luna y estrellas -->
+  <img class="luna" src="https://cdn.custom-cursor.com/packs/5538/avatar-azula-and-blue-fire-pack.png" alt="Azula sticker">
+
+
+  <h1>¿Me quieres?</h1>
+
+  <!-- Tu sticker: pon aquí tu miimagen.png -->
+  <img src="miimagen.png" alt="Sticker bonito">
+
+  <button class="yes">YES</button>
+  <button class="no">NO</button>
+
+  <script>
+    // Generar estrellas
+    for (let i = 0; i < 150; i++) {
+      const estrella = document.createElement("div");
+      estrella.classList.add("estrella");
+      estrella.style.left = Math.random() * 100 + "vw";
+      estrella.style.top  = Math.random() * 100 + "vh";
+      estrella.style.animationDuration = (1 + Math.random() * 2) + "s";
+      estrella.style.width = estrella.style.height = (2 + Math.random() * 3) + "px";
+      document.body.appendChild(estrella);
+    }
+
+    const btnYES = document.querySelector(".yes");
+    const btnNO  = document.querySelector(".no");
+    const img    = document.querySelector("img");
+
+    btnYES.addEventListener("click", () => {
+      img.remove();
+      btnYES.remove();
+      btnNO.remove();
+      creaImagen();
+      crearFrase();
+      lanzarCorazones();
+    });
+
+    btnNO.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - btnNO.offsetWidth);
+      const y = Math.random() * (window.innerHeight- btnNO.offsetHeight);
+      btnNO.style.left = x + "px";
+      btnNO.style.top  = y + "px";
+    });
+
+    function creaImagen() {
+  const nueva = document.createElement("img");
+  nueva.src = "abrazo.png"; // Imagen diferente al pulsar "YES"
+  nueva.alt = "Abrazo feliz";
+  nueva.style.zIndex = "2";
+  nueva.style.width = "200px";
+  nueva.style.filter = "drop-shadow(0 0 10px rgba(0,0,0,0.3))";
+  document.body.appendChild(nueva);
+}
+
+    function crearFrase() {
+      const p = document.createElement("p");
+      p.className = "nueva-frase";
+      p.textContent = "¡YO A TI TAMBIÉN!💖";
+      document.body.appendChild(p);
+    }
+
+    function lanzarCorazones() {
+      for (let i = 0; i < 20; i++) {
+        const c = document.createElement("div");
+        c.className = "corazon";
+        c.textContent = "💖";
+        c.style.left = Math.random() * 100 + "vw";
+        c.style.top  = "80%";
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 2000);
+      }
+    }
+  </script>
+
+</body>
+</html>
