@@ -6,17 +6,12 @@
   <style>
     /* === Fondo Avatar === */
     body {
-      /* Fondo: Appa volando sobre las nubes (Avatar: La Leyenda de Aang) */
       background: url('mi-fondo.jpg') no-repeat center center fixed;
       background-size: cover;
-
-      /* Overlay semitransparente para contraste */
       position: relative;
       overflow: hidden;
       margin: 0;
       font-family: Arial, sans-serif;
-
-      /* Centrado con flex */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -47,20 +42,51 @@
       50%      { opacity: 0.2; }
     }
 
+    /* === Animación flotante === */
+    @keyframes flotarAzula {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* === Imagen principal (Sticker central) === */
+    img.main-sticker {
+      width: 200px;
+      height: auto;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 10px rgba(0,0,0,0.3));
+      z-index: 2;
+    }
+
     /* === Luna emoji === */
     .luna {
-  position: absolute;
-  top: 10%;
-  left: 65%;
-  width: 300px;
-  height: auto;
-  z-index: 0;
-  filter: drop-shadow(0 0 15px #00bfff);
-  animation: flotarAzula 4s ease-in-out infinite;
-}
+      position: absolute;
+      top: 10%;
+      left: 65%;
+      width: 300px;
+      height: auto;
+      z-index: 1;
+      filter: drop-shadow(0 0 15px #00bfff);
+      animation: flotarAzula 4s ease-in-out infinite;
+    }
 
-
-    
+    /* === Stickers adicionales === */
+    .sticker {
+      position: absolute;
+      z-index: 1;
+      filter: drop-shadow(0 0 15px rgba(255,255,255,0.4));
+      animation: flotarAzula 5s ease-in-out infinite;
+    }
+    .iroh {
+      top: 75%;
+      left: 5%;
+      width: 180px;
+    }
+    .coles {
+      top: 70%;
+      right: 5%;
+      width: 160px;
+    }
 
     /* === Título === */
     h1 {
@@ -68,15 +94,6 @@
       color: #fff;
       margin-bottom: 20px;
       z-index: 2;
-    }
-
-    /* === Sticker (tu imagen) === */
-    img {
-      width: 200px;
-      height: auto;
-      margin-bottom: 20px;
-      z-index: 2;
-      filter: drop-shadow(0 0 10px rgba(0,0,0,0.3));
     }
 
     /* === Botones Sí / No === */
@@ -98,7 +115,6 @@
       background: linear-gradient(45deg, #4caf50, #81c784);
     }
     .yes:hover { transform: scale(1.1); }
-
     .no {
       left: 55%;
       top: 65%;
@@ -127,15 +143,17 @@
   </style>
 </head>
 <body>
-
   <!-- Luna y estrellas -->
   <img class="luna" src="https://cdn.custom-cursor.com/packs/5538/avatar-azula-and-blue-fire-pack.png" alt="Azula sticker">
 
+  <!-- Stickers adicionales -->
+  <img class="sticker iroh" src="iroh.png" alt="Iroh sabio">
+  <img class="sticker coles" src="coles.png" alt="¡Mis coles!">
 
-  <h1>¿Te gusta Avatar?</h1>
+  <h1>¿Te gusta la serie?</h1>
 
-  <!-- Tu sticker: pon aquí tu miimagen.png -->
-  <img src="miimagen.png" alt="Sticker bonito">
+  <!-- Sticker principal -->
+  <img class="main-sticker" src="miimagen.png" alt="Sticker bonito">
 
   <button class="yes">YES</button>
   <button class="no">NO</button>
@@ -154,10 +172,10 @@
 
     const btnYES = document.querySelector(".yes");
     const btnNO  = document.querySelector(".no");
-    const img    = document.querySelector("img");
+    const mainImg = document.querySelector(".main-sticker");
 
     btnYES.addEventListener("click", () => {
-      img.remove();
+      mainImg.remove();
       btnYES.remove();
       btnNO.remove();
       creaImagen();
@@ -173,19 +191,19 @@
     });
 
     function creaImagen() {
-  const nueva = document.createElement("img");
-  nueva.src = "abrazo.png"; // Imagen diferente al pulsar "YES"
-  nueva.alt = "Abrazo feliz";
-  nueva.style.zIndex = "2";
-  nueva.style.width = "200px";
-  nueva.style.filter = "drop-shadow(0 0 10px rgba(0,0,0,0.3))";
-  document.body.appendChild(nueva);
-}
+      const nueva = document.createElement("img");
+      nueva.src = "abrazo.png";
+      nueva.alt = "Abrazo feliz";
+      nueva.style.zIndex = "2";
+      nueva.style.width = "200px";
+      nueva.style.filter = "drop-shadow(0 0 10px rgba(0,0,0,0.3))";
+      document.body.appendChild(nueva);
+    }
 
     function crearFrase() {
       const p = document.createElement("p");
       p.className = "nueva-frase";
-      p.textContent = "¡A MI TAMBIÉN!💖";
+      p.textContent = "¡A MÍ TAMBIÉN!💖";
       document.body.appendChild(p);
     }
 
@@ -201,6 +219,6 @@
       }
     }
   </script>
-
 </body>
 </html>
+
